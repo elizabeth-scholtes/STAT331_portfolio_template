@@ -1,11 +1,34 @@
 ---
 title: "Final Grade Reflection"
-author: "Your Name Goes Here"
+author: "Elizabeth Scholtes"
 format: pdf
 editor: visual
 ---
 
-In this document, you make a data-based argument for the grade you've earned in this course. Your argument should include evidence from the supporting artifacts you've provided. 
+In this document, you make a data-based argument for the grade you've earned in this course. Your argument should include evidence from the supporting artifacts you've provided.
 
-The output document should be a PDF or a Word Document, as it should be a **maximum** of 2-pages. 
----
+## The output document should be a PDF or a Word Document, as it should be a **maximum** of 2-pages.
+
+Now that I have completed 6 weeks of the course, I am feeling much more comfortable with coding. I believe that I have improved a lot in these past three weeks in addition to learning many new things.
+
+I. I have demonstrated an understanding a majority of the learning targets.
+
+I have demonstrated WD-1: importing data in Lab 4, Question 1. I demonstrated WD-2: selecting columns from a data set in Lab 4, Question 3. WD-3: filtering rows from a data set was also demonstrated in Lab 4 in multiple questions. WD-4: modifying existing variables and creating new variables in a data set for a variety of data types can be seen in Lab 3 when I mutate the ethnic variable into White and Non-White groups. WD-5: using mutating join to combine multiple data frames is demonstrated in Challenge 4 when I used a left_join() to merge a data set I created with the original data set. WD-6: filtering joins to filter rows from a data frame is demonstrated in Lab 4 Question 2 when I use the semi_join() function.
+
+I demonstrated R-1: creating professional looking reproducible analysis using RStudio projects, Quarto docs, and the here package in Lab 3. R-2: writing a well documented and tidy code is also demonstrated in Lab 3 where I don't use any unnecessary functions and my syntax visually looks neat. R-3: writing robust programs that are resistant to changes in inputs is demonstrated in Lab 4 where I create many new data sets that are renamed (this allows me to change something small without changing all the other versions of the same data set).
+
+I demonstrated DVS-1: creating visualizations for variety of variable types in Lab 5 where I use different types of graphs/visualizations. DVS-2: using plot modifications to make visualizations clear to the reader in Challenge 4 when I changed the legend title and the axis labels. DVS-3: showing creativity in my visualizations in Challenge 2, exploring color themes. DVS-4: I can calculate numerical summaries of variables in Lab 4 when I used the summarize() function. DVS-5: finding summaries of variables across multiple groups in Lab 4 using the across() function.
+
+I demonstrated PE-1: writing concise code which does not repeat itself in Lab 3. In my original submission, I used the filter function multiple times in a pipe, but now I know to only call the filter function once. PE-3: using iteration to reduce repetition in my code was demonstrated in Lab 4 when I used the across() function. PE-4: I demonstrated using modern tools when carrying out my analysis using pivot_longer and pivot_wider which are the modern versions of gather and spread in Lab 4.
+
+II\. I have demonstrated my commitment to continued learning in a few different ways. The first is by completing the challenges, and the second is by completing revisions on my labs and challenges.
+
+One of the biggest improvements that shows my commitment to learning was the filter function. I have attached my reflection for Lab 3 which includes a deeper analysis of my learning. I have learned how to call the filter function only once rather than multiple times in the same pipe.
+
+III\. I have grown as a team member and leader by working better in a group setting with in class assignments. I feel like my group works well outside of the classroom with communication and asking/answering questions, but something we have really improved on these past few weeks is being able to work better in class. I think we are all much more comfortable with each other, so it is easier for us to ask questions and also try to help each other. It feels like we are solving problems together rather than individually.
+
+IV\. I have contributed to creating a respectful classroom learning community. I have been respectful in class by listening to lectures and helping out class mates whenever they need it. I also am respectful in that I have used the discord to ask questions and have asked my group questions. I understand that everyone must be respectful and patient in order for all of us to grow and learn.
+
+V. So far, I am accomplishing the goals I've outlined for myself. Now that I am able to make it to every class, it is easier for me to stay up to date and on top of the course material. I feel like I have shown a good understanding of the majority of the learning targets, and I am able to be more creative in writing code because I know how to use more functions.
+
+After my reflection, I feel that I have improved a lot since week 3. I still have things to work on, but I have demonstrated an understanding for the majority of the learning objectives as well as been a good team member in and out of the classroom. Because of this, I think I deserve an A.

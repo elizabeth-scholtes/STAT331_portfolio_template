@@ -1,0 +1,96 @@
+---
+title: "Challenge 4: Avocado Prices"
+author: "Elizabeth Scholtes"
+format: html
+editor: visual
+---
+
+```{r}
+#| message: false
+library(tidyverse)
+avocado <- read_csv(here::here("supporting_artifacts",
+                               "learning_targets",
+                               "Challenge 4",
+                               "avocado.csv"))
+```
+
+```{r}
+# California data set from avocado
+cali <- data.frame(city = c("LosAngeles",
+                            "SanDiego",
+                            "Sacramento",
+                            "SanFrancisco")
+                   )
+
+cali_avo <- avocado |>
+  semi_join(cali, by = c("region" = "city"))
+```
+
+```{r}
+# Create California house price data set
+ca_homes <- data.frame(city = c("LosAngeles",
+                                "SanDiego",
+                                "Sacramento",
+                                "SanFrancisco"),
+                       Price2015 = c(1167880,
+                                 757891,
+                                 280000,
+                                 1283699),
+                       Price2016 = c(1157514,
+                                  784896,
+                                  349000,
+                                  1253532),
+                       Price2017 = c(1419556,
+                                  948784,
+                                  424500,
+                                  1464218),
+                       Price2018 = c(1188452,
+                                  864726,
+                                  525500,
+                                  1712816)
+                       )
+colnames(ca_homes) <- c("city",
+                        "2015",
+                        "2016",
+                        "2017",
+                        "2018")
+
+ca_homes<- ca_homes |>
+  pivot_longer(cols = `2015` : `2018`,
+               names_to = "Year",
+               values_to = "Prices") |>
+  mutate(
+    Year = as.numeric(Year)
+  )
+
+# semi join homes and avocado data
+avo_homes <- cali_avo |>
+  left_join(ca_homes, by = c("region" = "city", "year" = "Year"))
+```
+
+Values of home prices from New Homes Directory. Looking at the prices of homes by year for detached homes under 2000-2500 sq feet, the average size of a house in California. (https://www.newhomesdirectory.com/)
+
+```{r}
+ggplot(avo_homes,
+       mapping = aes(x = Prices,
+                     y = `Total Volume`,
+                     color = region)
+       ) +
+  geom_point() +
+  geom_jitter() +
+  labs(x = "Home Price",
+       y = "Total Volume of Avocados Sold") +
+  guides(color = guide_legend(title = "City in California"))
+
+ggplot(avo_homes,
+       mapping = aes(x = Prices,
+                     y = AveragePrice,
+                     color = region)
+       ) +
+  geom_point() +
+  labs(x = "Home Price",
+       y = "Average Price of An Avocado") +
+  guides(color = guide_legend(title = "City in California"))
+```
+
+Housing prices in California can be quiet expensive, and one might think the cost of housing may correlate with avocado purchases (a luxury fruit). However, based on the data, there is not relationship between housing prices and avocado prices or sales. It seems that within each region, as the housing prices increased throughout the years, the total volume of avocados slightly increased. However, looking at the average prices of avocados, the changes are inconsistent and don't seem to relate to the housing price. Since the increases by region are so small and there is no relationship between average prices and home price, I wouldn't say there is any correlation between these variables.

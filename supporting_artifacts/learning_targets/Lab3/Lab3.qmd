@@ -1,0 +1,206 @@
+# 
+
+---
+title: "Lab 3: Hip-Hop"
+author: "Elizabeth Scholtes"
+format: html
+editor: visual
+---
+
+```{r}
+#| message: false
+library(tidyverse)
+```
+
+```{r}
+#| message: false
+hiphop <- read_csv(here::here("supporting_artifacts",
+                              "learning_targets",
+                              "Lab3",
+                              "hiphop.csv"))
+```
+
+# Question 1
+
+## Provide an overview of the data set:
+
+The data set Hip Hop contains results from a research study at the University of Minnesota predicting musical taste from a persons' familiarity with African American English (AAE). The data contains information about the 168 subject's sex, age, ethnicity, geographic populations of their hometown/county, their preferences for different types of music, the ethnicity of the people they spend time with, and their familiarity with an African American English term. These subjects were selected from the undergraduate programs of linguistics, sociology, and music classes at the University of Minnesota, 166 of which were not African American. A coding scheme was created to transform each participant's definition into familiarity (on a scale of 1-5 how well they know the word) and binary familiarity (do they know it at all).
+
+# Question 2
+
+## What are the rows of this data set?
+
+There are 10752 rows which represent the 64 different AAE words and the 168 subjects that participated in the study. Each row represents a subject's familiarity with one of the 64 words.
+
+# Question 3
+
+## How were missing values replaced? Benefits/Drawbacks?
+
+Missing values were replaced with 0's as well as the mean value of some variables. The other way that missing values are replaced is with "NA".
+
+A benefit to replacing the missing values with 0 are that we can still perform calculations on the specific variables without having to account for these missing variables. However, there are a few draw backs: the first is that if we were to perform calculations, it would weight a missing value as 0 which may skew the data in a certain direction. This could potentially change our prediction of music taste based on familiarity with AAE. The second drawback is that the missing values look similar to some of the other variables in which 0 actually has a value. For example, the different variables that count the number of artists subject's like contain the number 0. This holds a true value of 0 rather than a missing value. This can be confusing for an outsider to look at the data set and discern between the two different zeros.
+
+A benefit to replacing missing values with the mean is that you can still manipulate the data and the missing value just holds the average. A draw back is that the average may be no where near representative of the actual value. Using the mean value to calculate and manipulate the data could lead to inaccurate results.
+
+One benefit to replacing missing values with NA is that it's very clear and obvious where missing values occur. One draw back is that we are unable to perform calculations on those columns when there is an NA.
+
+# Question 4
+
+## Cleaning the data
+
+```{r}
+# Removing missing values and converting character values to factors
+clean <- hiphop |>
+  drop_na(numPreferredArtists,
+          numOverallArtists
+          ) |>
+  mutate(across(where(is.character), as.factor)
+         )
+```
+
+# Question 5
+
+## How many unique AAE words were studied in this data set?
+
+```{r}
+words <- distinct(clean, 
+               word, 
+               .keep_all = TRUE
+               )
+count(words)
+```
+
+There are 64 distinct words in the data set.
+
+# Question 6
+
+## Create a new variable
+
+```{r}
+# Turning Ethnic variable into white and non-white
+ethnic_clean <- clean |>
+  mutate(ethnic = 
+           (if_else
+            (ethnic == "white",
+              "white",
+              "non-white"
+              )
+            )
+         )
+```
+
+# Question 7
+
+## Demographics of the people in the study:
+
+```{r}
+# Creating a tibble with each distinct subject and selecting their sex, age, and ethnicity
+indsubj <- ethnic_clean |>
+  distinct(subj,
+           .keep_all = TRUE)
+
+demographics <- indsubj |>
+  select(sex,
+         age
+         )
+
+
+# Finding summary statistics
+summary(demographics)
+count(indsubj,
+      ethnic)
+```
+
+There are 56 Females and 24 Males in the study after cleaning the data with an average age of 19.55. The majority of subjects are between the ages 16-20. 62 of the participants were white while 18 were in the non-white category.
+
+# Question 8
+
+## Create plots displaying demographic information
+
+```{r}
+# Boxplot of Subject's ages by gender and separated by ethnicity
+ggplot(data = indsubj,
+       mapping = aes(x = age,
+                     y = sex,
+                     color = ethnic)
+       ) +
+  geom_boxplot() +
+  xlab("Age") +
+  ylab("Gender")
+
+# Histogram of ages
+ggplot(data = indsubj,
+       mapping = aes (x = age)
+       ) +
+  geom_histogram()
+
+```
+
+# Familiar Words
+
+```{r}
+# Finding most and least familiar words for subjects under age 20
+familiar_by_age <- ethnic_clean |>
+  filter(age < 20) |>
+  group_by(word) |>
+  summarize(MEAN_FAMILIARITY = mean(familiarity))
+
+# Least Familiar Word
+slice_min(familiar_by_age, MEAN_FAMILIARITY, n = 1)
+
+# Most Familiar Word
+slice_max(familiar_by_age, MEAN_FAMILIARITY, n = 1)
+```
+
+The lest familiar word for subjects under the age of 20 is "The Nation" while the most familiar word is "feel me".
+
+```{r}
+# Most and Least Familiar Words with non-white women
+familiar_by_women <- ethnic_clean |>
+  filter(ethnic == "non-white",
+         sex == "Female") |>
+  group_by(word) |>
+  summarize(MEAN_FAMILIARITY = mean(familiarity))
+
+# Least familiar
+slice_min(familiar_by_women, MEAN_FAMILIARITY, n = 1)
+
+# Most familiar
+slice_max(familiar_by_women, MEAN_FAMILIARITY, n = 1)
+```
+
+The most familiar word for non-white women is "what it do", while the least familiar words are "break someone out", "dollar cab", "domino", "dukey rope", "humming", "plex", "rollie", and "The Nation".
+
+```{r}
+# Most and Least Familiar Words with white men over 30
+familiar_by_men <- ethnic_clean |>
+  filter(ethnic == "white",
+         sex == "Male",
+         age > 30) |>
+  group_by(word) |>
+  summarize(MEAN_FAMILIARITY = mean(familiarity))
+
+# Least familiar
+slice_min(familiar_by_men, MEAN_FAMILIARITY, n = 1)
+
+# Most familiar
+slice_max(familiar_by_men, MEAN_FAMILIARITY, n = 1)
+```
+
+The least familiar words for white men over the age of 30 are "\[to be\] ghost", "A-town", "ashy", "ay yo trip", "ballin'", "beezy", "bones", "boo", "boughie", "break someone out", and the most familiar words are "5-0", "hard", and "make it rain".
+
+# Study Subjects
+
+```{r}
+justin_bieber <- ethnic_clean |>
+  filter(ethnic == "white",
+         sex == "Male",
+         city >= 10000 & city <= 60000,
+         age >= 17 & age <= 23) |>
+  slice_max(bieber,
+            n = 1)
+
+justin_bieber
+```
+
+It seems that subject p17 could potentially be Justin Bieber. After filtering all the data and including the maximum value on the variable "bieber" which describes how well a person knows his music, I have narrowed down the potential subjects to p17.

@@ -2,4 +2,13 @@
 title: "The Power of Efficiency"
 format: html
 editor: visual
+author: "Elizabeth Scholtes"
 ---
+
+I would define efficiency as concise effectiveness. Efficiency in statistical computing and data science follows the same definition in a more specific way: code should not be repetitive, but should still be descriptive and effective enough to be reproducible. This means that efficient code does not unnecessarily repeat the same function to accomplish the same thing. A function or different syntax may be used to solve this. For example, instead of calling a filter function three times, a user can separate the three arguments with a comma to only call the filter function once.
+
+Efficiency is important because it helps make code more readable and understandable to external users. If someone were to repeat themselves, it clutters code. This can make it harder for a reader to figure out what the data scientist is trying to accomplish with their code. Another reason why efficiency is important is because without it, there is a greater opportunity for more errors: the more people write/type, the higher the chances someone will make a mistake. This is inefficient because someone might spend more time trying to fix their code. A final reason why efficiency is important is because it can make writing code much faster. By not repeating functions or creating redundant objects, a data scientist is able to save time by typing fewer functions.
+
+The place where I encountered efficiency was when I was working with the filter function. There was one lab where we had to place multiple filters on a data set. At first, I called the filter function three times in the same pipe. I later learned that I can combine all of those into one filter function by separating it with a comma. This was shown in **Lab 3 Question \_\_\_**.
+
+Another place where I encountered efficiency was when we created functions to be iterated over multiple columns of data. This is really highlighted in **Lab 8** when creating functions to edit certain numeric terms as well as iterating the function across the different columns and through the different rows in the data to create a song.

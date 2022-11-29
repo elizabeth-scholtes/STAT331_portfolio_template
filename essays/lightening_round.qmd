@@ -2,4 +2,25 @@
 title: "Lightening Round Essays"
 format: html
 editor: visual
+author: "Elizabeth Scholtes"
 ---
+
+# Question 1
+
+If \[student\] doesn't earn an A, then nobody should because... everyone should be able to achieve an A in a class if the professor taught students well enough and had clear and simple instructions.
+
+# Question 2
+
+The most difficult topic for me was working with ggplot2 because it was challenging to research and find the right formatting option through the thousands of different choices.
+
+# Question 3
+
+The easiest part of the class was selecting and mutating data because I was able to visualize the process very easily in my head.
+
+# Question 4
+
+The part of the class that surprised me the most were the vast graphing/visualization abilities that R has because I didn't realize that you could create so many different types of visualizations.
+
+# Question 5
+
+One piece of advice I would give is to do your best to stay up to date with the suggested schedule because it helps you not fall behind as well as keeps you engaged with the current material.

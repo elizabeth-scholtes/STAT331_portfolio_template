@@ -3,7 +3,9 @@
 ---
 title: "Lab 3: Hip-Hop"
 author: "Elizabeth Scholtes"
-format: html
+format:
+  html:
+    self-contained: true
 editor: visual
 ---
 

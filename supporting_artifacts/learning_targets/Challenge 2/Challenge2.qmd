@@ -1,7 +1,9 @@
 ---
 title: "Challenge 2 - Lab 2: Exploring Rodents with ggplot2"
 author: "Elizabeth Scholtes"
-format: html
+format:
+  html:
+    self-contained: true
 editor: visual
 ---
 

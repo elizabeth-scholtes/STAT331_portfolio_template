@@ -11,13 +11,15 @@ II\. I have demonstrated an understanding a majority of the learning targets.
 
 I have demonstrated the following learning targets:
 
-WD-1 in Lab 4, Question 1. WD-2 in Lab 4, Question 3. WD-3 in Lab 4 in multiple questions. WD-4: in Lab 3 when I mutate the ethnic variable into White and Non-White groups. WD-5 in Challenge 4 when I used a left_join() to merge a data set I created with the original data set. WD-6 in Lab 4 Question 2 when I use the semi_join() function.
+WD-1 in Lab 4, Question 2. WD-2 and WD-3 in Lab 4, Question 4. WD-4: in Lab 3 Questions 2 and 4. WD-5 in Challenge 4 Question 3. WD-6 in Lab 4 Question 6. WD-7 in Lab 4 Question 7.
 
-I demonstrated R-1 in Lab 3. R-2 in Lab 3 where I don't use any unnecessary functions and my syntax visually looks neat. R-3 in Lab 4 where I create many new objects that rename the data set (this allows me to change something small without changing all the other versions of the same data set).
+I demonstrated R-1 and R-2 in Lab 3 (but also seen in the rest of my assignments). R-3 in Lab 7 Question 6.
 
-I demonstrated DVS-1 in Lab 5 where I use different types of graphs/visualizations. DVS-2 in Challenge 4 when I changed the legend title and the axis labels. DVS-3 in Challenge 2, exploring color themes. DVS-4 in Lab 4 when I used the summarize() function. DVS-5 in Lab 4 using the across() function.
+I demonstrated DVS-1 in a variety of ways in Lab 5 in every question. DVS-2 in Challenge 4 Question 4. DVS-3 in all of Challenge 2. DVS-4 and DVS-5 in Lab 4 in Questions 4, 5, and 6. DVS-6 in Lab 9 Question 13. DVS-7 in Challenge 9 Question 2.
 
-I demonstrated PE-1 in Lab 3. In my original submission, I used the filter function multiple times in a pipe, but now I know to only call the filter function once. PE-3 in Lab 4 when I used the across() function. PE-4 in Lab 4.
+I demonstrated PE-1 in Lab 3. In my original submission, I used the filter function multiple times in a pipe, but now I know to only call the filter function once. PE-2 in Lab 7 Question \_\_\_\_\_. PE-3 in Lab 4 when I used the across() function. PE-4 in Lab 4.
+
+I demonstrated DSM-1 and DSM-2 in Lab 9 Question 5\_\_\_\_.
 
 III\. In addition to the learning targets, I have demonstrated my commitment to continued learning in a few different ways. The first is by completing the challenges, and the second is by completing revisions on my labs and challenges.
 

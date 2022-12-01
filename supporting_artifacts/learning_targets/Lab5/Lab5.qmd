@@ -7,6 +7,8 @@ format:
 editor: visual
 ---
 
+# Question 1
+
 ```{r}
 #| message: false
 library(tidyverse)
@@ -33,7 +35,7 @@ ggplot(data = surveys,
   ylab("Type of Species")
 ```
 
-# Question 1 + 2
+# Question 2
 
 Reorder the box plots so the weights go in descending order.
 
@@ -61,7 +63,7 @@ ggplot(data = surveys,
 
 # Part 2: Time Series Plot
 
-# Question 1
+# Question 3
 
 Weights over time from original surveys data
 
@@ -73,7 +75,7 @@ ggplot(data = surveys,
   geom_point()
 ```
 
-# Question 2
+# Question 4
 
 Mean weights by year and genus over time
 
@@ -93,7 +95,7 @@ ggplot(data = weightavg,
   geom_line()
 ```
 
-# Question 3 + 4
+# Question 5
 
 Reorder by weight and rename legend title and move legend info to plot title
 
@@ -123,7 +125,7 @@ ggplot(data = weightavg,
 
 # Part 3: Captures Over the Week
 
-# Question 1
+# Question 6
 
 Rodents captured each day of the week
 
@@ -139,7 +141,7 @@ ggplot(data = surveys,
   ggtitle("Number of Rodents Captured")
 ```
 
-# Question 2
+# Question 7
 
 change order of day of week to Mon-Sun
 
@@ -163,7 +165,7 @@ ggplot(data = surveys,
   ggtitle("Number of Rodents Captured")
 ```
 
-# Question 3
+# Question 8
 
 Create weekday and weekend levels
 

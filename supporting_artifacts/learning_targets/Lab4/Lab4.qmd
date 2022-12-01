@@ -1,7 +1,9 @@
 ---
 title: "Lab 4: Avocado Prices"
 author: "Elizabeth Scholtes"
-format: html
+format:
+  html:
+    self-contained: true
 editor: visual
 ---
 

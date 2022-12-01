@@ -19,7 +19,7 @@ I demonstrated DVS-1 in a variety of ways in Lab 5 in every question. DVS-2 in C
 
 I demonstrated PE-1 in Lab 3. In my original submission, I used the filter function multiple times in a pipe, but now I know to only call the filter function once. PE-2 in Lab 7 Question 4 & 6. PE-3 in Lab 4 Question 5 and Lab 8 Question 8. PE-4 in Lab 4 Question 7.
 
-I demonstrated DSM-1 and DSM-2 in Lab 9 Question 5 & 6.
+I demonstrated DSM-1 in Practice Activity 9.2. DSM-2 in Lab 9 Question 5 & 6.
 
 III\. In addition to the learning targets, I have demonstrated my commitment to continued learning in a few different ways. The first is by completing the challenges, and the second is by completing revisions on my labs and challenges.
 

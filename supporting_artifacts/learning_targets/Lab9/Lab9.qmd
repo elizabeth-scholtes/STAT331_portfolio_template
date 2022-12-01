@@ -9,6 +9,8 @@ editor: visual
 
 # Parts 1 & 2: The Data
 
+# Question 1
+
 ```{r}
 #| message: false
 library(tidyverse)
@@ -17,7 +19,7 @@ names <- read_csv(here::here("supporting_artifacts", "learning_targets", "Lab9",
 
 # Part 3: Summarizing & Visualizing the Number of Allisons
 
-## Question 1
+# Question 2
 
 ```{r}
 # Rename column as Sex
@@ -38,7 +40,7 @@ allison_names <- names |>
 allison_names
 ```
 
-## Question 2
+# Question 3
 
 ```{r}
 allison_F_names <- names |>
@@ -46,7 +48,7 @@ allison_F_names <- names |>
          Sex == "F")
 ```
 
-## Question 3
+# Question 4
 
 ```{r}
 # Create data frame that can be used in future questions
@@ -63,7 +65,7 @@ names_by_year |>
 
 # Part 4: Modeling the Number of Allisons
 
-## Question 4
+# Question 5
 
 ```{r}
 allison_lm <- names_by_year |>
@@ -71,7 +73,7 @@ allison_lm <- names_by_year |>
 allison_lm
 ```
 
-## Question 5
+# Question 6
 
 ```{r}
 names_by_year |>
@@ -81,13 +83,13 @@ names_by_year |>
   stat_smooth(method = "lm")
 ```
 
-## Question 6
+# Question 7
 
 Estimated Regression Equation:
 
 **Count(hat) = 209689.8 - 101.5\*Year**
 
-## Question 7
+# Question 8
 
 ```{r}
 allison_lm |>
@@ -100,13 +102,13 @@ allison_lm |>
 
 It looks like there is a pattern with the residuals in that the residual value gets higher as the number of "Allisons" per year gets higher. This is not ideal because that means that the residuals are not random and do not necessarily satisfy linear model conditions
 
-## Question 8
+# Question 9
 
 From this model, we can conclude that the name Allison is becoming less and less popular. Maybe in terms of how often the name is used it's less "cool", but that's not necessarily true!
 
 # Part 5: Spelling by State
 
-## Question 1
+# Question 10
 
 ```{r}
 allan_names <- names |>
@@ -114,7 +116,7 @@ allan_names <- names |>
          Sex == "M")
 ```
 
-## Question 2
+# Question 11
 
 ```{r}
 statenames <- allan_names |>
@@ -130,7 +132,7 @@ statenames <- allan_names |>
 statenames
 ```
 
-## Question 3
+# Question 13
 
 ```{r}
 statenames |>

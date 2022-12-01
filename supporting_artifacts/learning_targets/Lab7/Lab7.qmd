@@ -1,0 +1,138 @@
+---
+title: "Lab 7: Functions and Fish"
+author: "Elizabeth Scholtes"
+format:
+  html:
+    self-contained: true
+editor: visual
+---
+
+# Question 1
+
+```{r}
+#| message: false
+library(tidyverse)
+fish <- read_csv(here::here("supporting_artifacts", "learning_targets", "Lab7", "BlackfootFish.csv"))
+```
+
+# Part one: Summaries and Plots
+
+## Task 1 - Summarizing Missing Data
+
+# Question 2
+
+```{r}
+
+missing_val <- fish |>
+  summarize(
+    across(
+      .cols = everything(),
+      .fns = ~sum(is.na(.))
+    )
+  )
+missing_val
+```
+
+The only variable that has missing observations is weight. There are 1796 missing observations.
+
+## Task 2 - Visualizing Missing Data
+
+# Question 3
+
+```{r}
+missing <- fish |>
+  group_by(trip,
+           year,
+           section) |>
+  summarize(
+    weight = sum(is.na(weight))
+  ) |>
+  mutate(
+    trip = as.character(trip)
+  ) |>
+  ggplot(mapping = aes(x = year,
+                       y = weight,
+                       fill = trip)) + 
+  geom_col() +
+  facet_wrap(~section) +
+  scale_x_continuous(breaks = seq(from = 1988, to = 2006, by = 2)) +
+  labs(x = "Year",
+       y = "Weight in Ounces",
+       title = "Frequency of Missing Weight Values")
+missing
+```
+
+We can see from the bar charts that in the year 1990, there were the most missing values for the Johnsrud section. Additionally, in the second trip, there were more missing values because the first trip is the one in which we collected data on the majority of the fish. We can also see that we had more missing values from Johnsrud than the Scotty Brown section of the river.
+
+# Part 2: Adjusting the Data
+
+## Task 1 - Writing a Function
+
+## Task 2 - Adding Stops
+
+## Task 3 - Performing a Simple Test
+
+# Question 4
+
+```{r}
+rescale_01 <- function(vec) {
+  stopifnot(is.numeric(vec) == TRUE,
+            length(vec) > 1)
+  min_value <- min(vec, na.rm = TRUE)
+  return(
+    (vec - min_value) / 
+      (max(vec, na.rm = TRUE) - min_value)
+  )
+}
+
+x <- c(1:25, NA)
+rescale_01(vec = x)
+```
+
+## Task 4 - Performing a More Difficult Test
+
+# Question 5
+
+```{r}
+#| layout-nrow: 1
+fish_rescaled <- fish |>
+  mutate(
+    rescaled_length = rescale_01(vec = length)
+  )
+
+
+ggplot(data = fish_rescaled,
+       mapping = aes(x = length)) +
+  geom_histogram() +
+  labs(x = "Length in Millimeters")
+ggplot(data = fish_rescaled,
+       mapping = aes(x = rescaled_length)) +
+  geom_histogram() +
+  labs( x = "Rescaled Length")
+```
+
+## Task 5 - Incorporating Variables
+
+# Question 6
+
+```{r}
+rescale_column <- function(data, vars) {
+  stopifnot(is.data.frame(data))
+  data <- data |>
+    mutate(
+      across(
+        .cols = {{ vars }},
+        .fns = rescale_01
+        )
+      )
+  return(data)
+}
+```
+
+## Task 6 - Another Function Test
+
+# Question 7
+
+```{r}
+rescale_column(fish, vars = c(length, weight))
+```

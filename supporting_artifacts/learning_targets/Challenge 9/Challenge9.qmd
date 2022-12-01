@@ -1,0 +1,164 @@
+---
+title: "Challenge 9: Baby Names"
+author: "Elizabeth Scholtes"
+format:
+  html:
+    self-contained: true
+editor: visual
+---
+
+```{r}
+#| message: false
+library(tidyverse)
+names <- read_csv(here::here("supporting_artifacts", "learning_targets", "Challenge 9", "StateNames_A.csv"))
+```
+
+```{r}
+# Rename column as Sex
+names <- rename(names, "Sex" = "Gender")
+```
+
+# Challenge: Question 1
+
+```{r}
+#| message: false
+library(DT)
+```
+
+```{r}
+#| warning: false
+datatable(names)
+```
+
+```{r}
+#| message: false
+allison_names <- names |>
+  group_by(State, Sex) |>
+  filter(Name == "Allison") |>
+  summarize(Count = sum(Count)) |>
+  pivot_wider(names_from = Sex,
+              values_from = Count) |>
+  mutate(
+    M = coalesce(M, 0)
+  )
+allison_names
+```
+
+```{r}
+allison_F_names <- names |>
+  filter(Name == "Allison",
+         Sex == "F")
+```
+
+```{r}
+# Create data frame that can be used in future questions
+names_by_year <- allison_F_names |>
+  group_by(Year) |>
+  summarize(Count = sum(Count))
+
+names_by_year |>
+  ggplot(mapping = aes(x = Year,
+                       y = Count)) +
+  geom_col() +
+  labs(title = "Number of people assigned female at birth with the name Allison")
+```
+
+```{r}
+allison_lm <- names_by_year |>
+  lm(Count ~ Year, data = _)
+allison_lm
+```
+
+```{r}
+names_by_year |>
+  ggplot(aes(x = Year,
+             y = Count)) +
+  geom_point() +
+  stat_smooth(method = "lm")
+```
+
+Estimated Regression Equation:
+
+**Count(hat) = 209689.8 - 101.5\*Year**
+
+```{r}
+allison_lm |>
+  broom::augment() |>
+  ggplot(mapping = aes(x = .resid,
+                       y = Count)) +
+  geom_point() +
+  labs(x = "Residuals")
+```
+
+It looks like there is a pattern with the residuals in that the residual value gets higher as the number of "Allisons" per year gets higher. This is not ideal because that means that the residuals are not random and do not necessarily satisfy linear model conditions
+
+From this model, we can conclude that the name Allison is becoming less and less popular. Maybe in terms of how often the name is used it's less "cool", but that's not necessarily true!
+
+```{r}
+allan_names <- names |>
+  filter(Name == "Allan" | Name == "Alan" | Name == "Allen",
+         Sex == "M")
+```
+
+```{r}
+statenames <- allan_names |>
+  pivot_wider(names_from = Name, values_from = Count) |>
+  filter(Year == 2000,
+         State == "CA" | State == "PA") |>
+  select(State, Allen, Alan, Allan) |>
+  mutate(
+    Allen = coalesce(Allen, 0),
+    Alan = coalesce(Alan, 0),
+    Allan = coalesce(Allan, 0)
+  )
+statenames
+```
+
+```{r}
+percents <- statenames |>
+  rowwise()|>
+  mutate(
+    total_sum = sum(c_across(Allen : Allan)),
+    Allen = Allen / total_sum,
+    Alan = Alan / total_sum,
+    Allan = Allan / total_sum
+    ) |>
+  select(State:Allan)
+percents
+```
+
+# Challenge: Question 2
+
+```{r}
+#| message: false
+library(kableExtra)
+```
+
+```{r}
+# Table of Allisons by State
+knitr::kable(allison_names,
+             format = "html",
+             col.names = c("State",
+                           "Sex assigned at Birth",
+                           "Number of People with Name Allison"),
+             booktabs = TRUE) |>
+  kable_styling(latex_options = "scale_down")
+```
+
+```{r}
+# Allan names raw counts
+knitr::kable(statenames,
+              format = "html",
+             caption = "Number of 'Alans' by State",
+             booktabs = TRUE) |>
+  add_header_above(c("Location" = 1, "Name" = 3))
+```
+
+```{r}
+# Allan names by percent
+knitr::kable(percents,
+             format = "html",
+             caption = "Percentage of 'Alans' by State",
+             booktabs = TRUE) |>
+  kable_styling(font_size = 18)
+```

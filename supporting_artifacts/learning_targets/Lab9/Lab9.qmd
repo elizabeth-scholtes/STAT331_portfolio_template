@@ -1,0 +1,145 @@
+---
+title: "Lab 9: Baby Names"
+author: "Elizabeth Scholtes"
+format:
+  html:
+    self-contained: true
+editor: visual
+---
+
+# Parts 1 & 2: The Data
+
+```{r}
+#| message: false
+library(tidyverse)
+names <- read_csv(here::here("supporting_artifacts", "learning_targets", "Lab9", "StateNames_A.csv"))
+```
+
+# Part 3: Summarizing & Visualizing the Number of Allisons
+
+## Question 1
+
+```{r}
+# Rename column as Sex
+names <- rename(names, "Sex" = "Gender")
+```
+
+```{r}
+allison_names <- names |>
+  group_by(State, Sex) |>
+  filter(Name == "Allison") |>
+  summarize(Count = sum(Count)) |>
+  pivot_wider(names_from = Sex,
+              values_from = Count) |>
+  mutate(
+    M = coalesce(M, 0)
+  )
+  
+allison_names
+```
+
+## Question 2
+
+```{r}
+allison_F_names <- names |>
+  filter(Name == "Allison",
+         Sex == "F")
+```
+
+## Question 3
+
+```{r}
+# Create data frame that can be used in future questions
+names_by_year <- allison_F_names |>
+  group_by(Year) |>
+  summarize(Count = sum(Count))
+
+names_by_year |>
+  ggplot(mapping = aes(x = Year,
+                       y = Count)) +
+  geom_col() +
+  labs(title = "Number of people assigned female at birth with the name Allison")
+```
+
+# Part 4: Modeling the Number of Allisons
+
+## Question 4
+
+```{r}
+allison_lm <- names_by_year |>
+  lm(Count ~ Year, data = _)
+allison_lm
+```
+
+## Question 5
+
+```{r}
+names_by_year |>
+  ggplot(aes(x = Year,
+             y = Count)) +
+  geom_point() +
+  stat_smooth(method = "lm")
+```
+
+## Question 6
+
+Estimated Regression Equation:
+
+**Count(hat) = 209689.8 - 101.5\*Year**
+
+## Question 7
+
+```{r}
+allison_lm |>
+  broom::augment() |>
+  ggplot(mapping = aes(x = .resid,
+                       y = Count)) +
+  geom_point() +
+  labs(x = "Residuals")
+```
+
+It looks like there is a pattern with the residuals in that the residual value gets higher as the number of "Allisons" per year gets higher. This is not ideal because that means that the residuals are not random and do not necessarily satisfy linear model conditions
+
+## Question 8
+
+From this model, we can conclude that the name Allison is becoming less and less popular. Maybe in terms of how often the name is used it's less "cool", but that's not necessarily true!
+
+# Part 5: Spelling by State
+
+## Question 1
+
+```{r}
+allan_names <- names |>
+  filter(Name == "Allan" | Name == "Alan" | Name == "Allen",
+         Sex == "M")
+```
+
+## Question 2
+
+```{r}
+statenames <- allan_names |>
+  pivot_wider(names_from = Name, values_from = Count) |>
+  filter(Year == 2000,
+         State == "CA" | State == "PA") |>
+  select(State:Allan) |>
+  mutate(
+    Allen = coalesce(Allen, 0),
+    Alan = coalesce(Alan, 0),
+    Allan = coalesce(Allan, 0)
+  )
+statenames
+```
+
+## Question 3
+
+```{r}
+statenames |>
+  rowwise()|>
+  mutate(
+    total_sum = sum(c_across(Allen : Allan)),
+    Allen = Allen / total_sum,
+    Alan = Alan / total_sum,
+    Allan = Allan / total_sum
+    ) |>
+  select(State:Allan)
+```

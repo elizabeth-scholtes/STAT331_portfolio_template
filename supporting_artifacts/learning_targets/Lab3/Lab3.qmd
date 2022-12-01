@@ -9,6 +9,8 @@ format:
 editor: visual
 ---
 
+# Question 1
+
 ```{r}
 #| message: false
 library(tidyverse)
@@ -22,19 +24,13 @@ hiphop <- read_csv(here::here("supporting_artifacts",
                               "hiphop.csv"))
 ```
 
-# Question 1
-
 ## Provide an overview of the data set:
 
 The data set Hip Hop contains results from a research study at the University of Minnesota predicting musical taste from a persons' familiarity with African American English (AAE). The data contains information about the 168 subject's sex, age, ethnicity, geographic populations of their hometown/county, their preferences for different types of music, the ethnicity of the people they spend time with, and their familiarity with an African American English term. These subjects were selected from the undergraduate programs of linguistics, sociology, and music classes at the University of Minnesota, 166 of which were not African American. A coding scheme was created to transform each participant's definition into familiarity (on a scale of 1-5 how well they know the word) and binary familiarity (do they know it at all).
 
-# Question 2
-
 ## What are the rows of this data set?
 
 There are 10752 rows which represent the 64 different AAE words and the 168 subjects that participated in the study. Each row represents a subject's familiarity with one of the 64 words.
-
-# Question 3
 
 ## How were missing values replaced? Benefits/Drawbacks?
 
@@ -46,7 +42,7 @@ A benefit to replacing missing values with the mean is that you can still manipu
 
 One benefit to replacing missing values with NA is that it's very clear and obvious where missing values occur. One draw back is that we are unable to perform calculations on those columns when there is an NA.
 
-# Question 4
+# Question 2
 
 ## Cleaning the data
 
@@ -60,7 +56,7 @@ clean <- hiphop |>
          )
 ```
 
-# Question 5
+# Question 3
 
 ## How many unique AAE words were studied in this data set?
 
@@ -74,7 +70,7 @@ count(words)
 
 There are 64 distinct words in the data set.
 
-# Question 6
+# Question 4
 
 ## Create a new variable
 
@@ -91,7 +87,7 @@ ethnic_clean <- clean |>
          )
 ```
 
-# Question 7
+# Question 5
 
 ## Demographics of the people in the study:
 
@@ -115,7 +111,7 @@ count(indsubj,
 
 There are 56 Females and 24 Males in the study after cleaning the data with an average age of 19.55. The majority of subjects are between the ages 16-20. 62 of the participants were white while 18 were in the non-white category.
 
-# Question 8
+# Question 6
 
 ## Create plots displaying demographic information
 
@@ -138,6 +134,8 @@ ggplot(data = indsubj,
 
 ```
 
+# Question 7
+
 # Familiar Words
 
 ```{r}
@@ -156,6 +154,8 @@ slice_max(familiar_by_age, MEAN_FAMILIARITY, n = 1)
 
 The lest familiar word for subjects under the age of 20 is "The Nation" while the most familiar word is "feel me".
 
+# Question 8
+
 ```{r}
 # Most and Least Familiar Words with non-white women
 familiar_by_women <- ethnic_clean |>
@@ -172,6 +172,8 @@ slice_max(familiar_by_women, MEAN_FAMILIARITY, n = 1)
 ```
 
 The most familiar word for non-white women is "what it do", while the least familiar words are "break someone out", "dollar cab", "domino", "dukey rope", "humming", "plex", "rollie", and "The Nation".
+
+# Question 9
 
 ```{r}
 # Most and Least Familiar Words with white men over 30
@@ -190,6 +192,8 @@ slice_max(familiar_by_men, MEAN_FAMILIARITY, n = 1)
 ```
 
 The least familiar words for white men over the age of 30 are "\[to be\] ghost", "A-town", "ashy", "ay yo trip", "ballin'", "beezy", "bones", "boo", "boughie", "break someone out", and the most familiar words are "5-0", "hard", and "make it rain".
+
+# Question 10
 
 # Study Subjects
 

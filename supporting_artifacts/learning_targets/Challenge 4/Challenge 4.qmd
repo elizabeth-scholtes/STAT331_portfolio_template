@@ -7,6 +7,8 @@ format:
 editor: visual
 ---
 
+### Question 1
+
 ```{r}
 #| message: false
 library(tidyverse)
@@ -15,6 +17,8 @@ avocado <- read_csv(here::here("supporting_artifacts",
                                "Challenge 4",
                                "avocado.csv"))
 ```
+
+### Question 2
 
 ```{r}
 # California data set from avocado
@@ -27,6 +31,8 @@ cali <- data.frame(city = c("LosAngeles",
 cali_avo <- avocado |>
   semi_join(cali, by = c("region" = "city"))
 ```
+
+### Question 3
 
 ```{r}
 # Create California house price data set
@@ -71,6 +77,8 @@ avo_homes <- cali_avo |>
 ```
 
 Values of home prices from New Homes Directory. Looking at the prices of homes by year for detached homes under 2000-2500 sq feet, the average size of a house in California. (https://www.newhomesdirectory.com/)
+
+### Question 4
 
 ```{r}
 ggplot(avo_homes,

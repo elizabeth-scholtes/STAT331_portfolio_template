@@ -7,16 +7,18 @@ format:
 editor: visual
 ---
 
+# Question 1
+
 ```{r}
 #| message: false
 library(tidyverse)
 ```
 
-# Question 1
-
 ## Describe the data set
 
 This data set includes information about the sale of Hass avocados. Some information the data set provides is the average price of an avocado, they year of purchase, city or region, and the size of the avocado.
+
+# Question 2
 
 ```{r}
 #| message: false
@@ -28,7 +30,7 @@ avocado <- read_csv(here::here("supporting_artifacts",
                     )
 ```
 
-# Question 2
+# Question 3
 
 Cleaning the dataset
 
@@ -86,7 +88,7 @@ metro <- avocado |>
 # count_metro <- distinct(metro, region)
 ```
 
-# Question 3
+# Question 4
 
 ```{r}
 # Filtering by organic and 2017
@@ -105,7 +107,7 @@ slice_max(organic_region, order_by = tot_small)
 
 The major region that sold the most organic, small Hass avocados on average in 2017 was the West region.
 
-# Question 4
+# Question 5
 
 ```{r}
 # Split Date variable into year month and day
@@ -129,7 +131,7 @@ slice_max(high_volume, order_by = `Total Volume`)
 
 The month with the highest average volume of avocado sales is February.
 
-# Question 5
+# Question 6
 
 ```{r}
 # Finding the top five regions with highest averages for total volume
@@ -155,7 +157,7 @@ ggplot(vol_compare,
 
 The Los Angeles metro region has sold the most total avocados. Above is a box plot of the top five metro areas with the highest averages of total volume sold.
 
-# Question 6
+# Question 7
 
 ```{r}
 # Create data set with only California cities
@@ -235,7 +237,7 @@ ggplot(data = type_diff,
 
 The city with the largest organic versus conventional type of avocado difference is in San Francisco. The average price of conventional avocados was 1.39 while the average price of organic avocados was 2.21, almost a \$1 difference. The city with the second highest difference is Sacramento. The average price of conventional avocados iss 1.27 and the average price of organic avocados is 1.97.
 
-# Question 7
+# Question 8
 
 ```{r}
 # Finding proportion of mean Hass avocado sales by size and by conventional and organic

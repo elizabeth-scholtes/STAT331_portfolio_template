@@ -10,6 +10,7 @@ editor: visual
 ```{r}
 #| message: false
 library(tidyverse)
+library(scales)
 names <- read_csv(here::here("supporting_artifacts", "learning_targets", "Challenge 9", "StateNames_A.csv"))
 ```
 
@@ -59,7 +60,8 @@ names_by_year <- allison_F_names |>
 names_by_year |>
   ggplot(mapping = aes(x = Year,
                        y = Count)) +
-  geom_col() +
+  geom_point() +
+  geom_line() +
   labs(title = "Number of people assigned female at birth with the name Allison")
 ```
 
@@ -95,9 +97,24 @@ It looks like there is a pattern with the residuals in that the residual value g
 From this model, we can conclude that the name Allison is becoming less and less popular. Maybe in terms of how often the name is used it's less "cool", but that's not necessarily true!
 
 ```{r}
+#| message: false
+al_names <- data.frame(Name = c("Allan", "Alan", "Allen"))
+
 allan_names <- names |>
-  filter(Name == "Allan" | Name == "Alan" | Name == "Allen",
-         Sex == "M")
+  semi_join(al_names,
+            names,
+            by = "Name") |>
+  filter(Sex == "M")
+
+allan_names |>
+  group_by(Year, Name) |>
+  summarize(Count = sum(Count))|>
+  ggplot(mapping = aes(x = Year,
+                       y = Count,
+                       color = Name)) +
+  geom_point() +
+  geom_line() +
+  labs(title = "Popularity of names 'Alan', 'Allan', and 'Allen'")
 ```
 
 ```{r}
@@ -105,12 +122,7 @@ statenames <- allan_names |>
   pivot_wider(names_from = Name, values_from = Count) |>
   filter(Year == 2000,
          State == "CA" | State == "PA") |>
-  select(State, Allen, Alan, Allan) |>
-  mutate(
-    Allen = coalesce(Allen, 0),
-    Alan = coalesce(Alan, 0),
-    Allan = coalesce(Allan, 0)
-  )
+  select(State, Allen, Alan, Allan)
 statenames
 ```
 
@@ -119,9 +131,9 @@ percents <- statenames |>
   rowwise()|>
   mutate(
     total_sum = sum(c_across(Allen : Allan)),
-    Allen = Allen / total_sum,
-    Alan = Alan / total_sum,
-    Allan = Allan / total_sum
+    Allen = percent( (Allen / total_sum), accuracy = .01),
+    Alan = percent( (Alan / total_sum), accuracy = .01),
+    Allan = percent( (Allan / total_sum), accuracy = .01) 
     ) |>
   select(State:Allan)
 percents

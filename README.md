@@ -1,22 +1,31 @@
-This is a line from RStudio
-# Template for STAT 331 Portfolio
-
-See instructions for creating your final portfolio [here](https://docs.google.com/document/d/11iHZbvXWEjcpJpBQ_O5wpYlVkPfmcyQFgBFqKMlVjg4/edit?usp=sharing). This repository provides you with a template for how your portfolio repository is expected to be organized. 
-
-# Table of Contents 
+# Table of Contents
 
 ## Final Grade Reflection
 
 ## Essay Responses
 
-## Supporting Artifacts 
+-   Data Scientist
+
+-   Efficiency
+
+-   Lightening Round
+
+## Supporting Artifacts
 
 ### Demonstration of Learning Targets
+
+-   Challenges 2, 4, 9
+
+-   Labs 3, 4, 5, 7, 8, 9
+
+-   Practice Activity 9
 
 ### Demonstration of Continued Learning
 
 #### Revising My Thinking
 
-#### Extending My Thinking
+-   Revisions
 
-### Growth as a Team Member
+### Extended Learning
+
+-   Challenges 2 & 8

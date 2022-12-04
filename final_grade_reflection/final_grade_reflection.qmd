@@ -5,9 +5,9 @@ format: pdf
 editor: visual
 ---
 
-I. I believe that I have earned an A in the class.
+**I.** I believe that I have earned an A in the class.
 
-II\. I have demonstrated an understanding all of the learning targets.
+**II.** I have demonstrated an understanding all of the learning targets.
 
 I have demonstrated the following learning targets:
 
@@ -21,11 +21,11 @@ I demonstrated PE-1 in Lab 3. In my original submission, I used the filter funct
 
 I demonstrated DSM-1 in Practice Activity 9.2. DSM-2 in Lab 9 Question 5 & 6.
 
-III\. In addition to the learning targets, I have demonstrated my commitment to continued learning in a few different ways. The first is by completing the challenges, and the second is by completing revisions on my labs and challenges.
+**III.** In addition to the learning targets, I have demonstrated my commitment to continued learning in a few different ways. The first is by completing the challenges, and the second is by completing revisions on my labs and challenges.
 
 I believe I have gone above and beyond in my extended learning. This is shown in Challenge 2 and Challenge 8 where I attempted all of the modifications to in the assignment. I did a good amount of external research to figure out how to complete the challenges while also putting in a lot of effort in solving the problems.
 
-I also believe that I have taken your feedback very seriously and have thoughtfully revised my assignments to help me better learn the material. This can be seen in my continued learning artifacts. One of the biggest improvements that shows my commitment to learning was the filter function. I have attached my reflection for Lab 3 which includes a deeper analysis of my learning. I have learned how to call the filter function only once rather than multiple times in the same pipe.
+I also believe that I have taken your feedback very seriously and have thoughtfully revised my assignments to help me better learn the material. (Note: I made additional revisions to Lab 9 and Challenge 9 even though I already had a check mark.) This can be seen in my continued learning artifacts. One of the biggest improvements that shows my commitment to learning was the filter function. I have attached my reflection for Lab 3 which includes a deeper analysis of my learning. I have learned how to call the filter function only once rather than multiple times in the same pipe.
 
 Outside of class work, I have grown as a team member and leader by working better in a group setting with in-class assignments. I feel like my group works well outside of the classroom with communication and asking/answering questions. These past few weeks we have worked even better in class, and I think we are all much more comfortable with each other, so it is easier for us to ask questions and also try to help each other. It feels like we are solving problems together rather than individually.
 

@@ -60,7 +60,7 @@ For this lab we will use the **`readr`** package (from the `tidyverse`) to read 
 
 ```{r data}
 # Code for question 1! 
-surveys <- read_csv(here("supporting_artifacts", "learning_targets", "Challenge 2","surveys.csv")) 
+surveys <- read_csv(here("supporting_artifacts", "extended_learning", "Challenge 2","surveys.csv")) 
 ```
 
 ## Inspecting the Data

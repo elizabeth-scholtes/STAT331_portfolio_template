@@ -27,6 +27,7 @@ names <- rename(names, "Sex" = "Gender")
 ```
 
 ```{r}
+#| message: false
 allison_names <- names |>
   group_by(State, Sex) |>
   filter(Name == "Allison") |>
@@ -59,7 +60,8 @@ names_by_year <- allison_F_names |>
 names_by_year |>
   ggplot(mapping = aes(x = Year,
                        y = Count)) +
-  geom_col() +
+  geom_point() +
+  geom_line() +
   labs(title = "Number of people assigned female at birth with the name Allison")
 ```
 
@@ -111,9 +113,24 @@ From this model, we can conclude that the name Allison is becoming less and less
 # Question 10
 
 ```{r}
+#| message: false
+al_names <- data.frame(Name = c("Allan", "Alan", "Allen"))
+
 allan_names <- names |>
-  filter(Name == "Allan" | Name == "Alan" | Name == "Allen",
-         Sex == "M")
+  semi_join(al_names,
+            names,
+            by = "Name") |>
+  filter(Sex == "M")
+
+allan_names |>
+  group_by(Year, Name) |>
+  summarize(Count = sum(Count))|>
+  ggplot(mapping = aes(x = Year,
+                       y = Count,
+                       color = Name)) +
+  geom_point() +
+  geom_line() +
+  labs(title = "Popularity of names 'Alan', 'Allan', and 'Allen'")
 ```
 
 # Question 11
@@ -123,12 +140,7 @@ statenames <- allan_names |>
   pivot_wider(names_from = Name, values_from = Count) |>
   filter(Year == 2000,
          State == "CA" | State == "PA") |>
-  select(State:Allan) |>
-  mutate(
-    Allen = coalesce(Allen, 0),
-    Alan = coalesce(Alan, 0),
-    Allan = coalesce(Allan, 0)
-  )
+  select(State:Allan)
 statenames
 ```
 
